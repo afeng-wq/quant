@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from utils.db_util import DBUtil
 from utils.tushare_util import TushareUtil
 import json
 from .models import StockList, Question
@@ -9,15 +8,9 @@ from .tasks import sendmail
 def index(request):
     util = TushareUtil.instance()
     data = util.get_stock_list()
-    print(data)
-    db_util = DBUtil.instance()
-    db_util.init(data, "stock_list")
-
     stock = StockList.objects.get(index=1)
     print(stock)
-
     data = util.get_stock_info(ts_code='000001.SZ',start_date='20201124',end_date='20201124')
-    db_util.init(data, "000001.SZ")
     return HttpResponse(stock)
 
 
