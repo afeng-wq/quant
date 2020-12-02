@@ -4,9 +4,9 @@ from django.db import models
 
 
 class StockList(models.Model):
-    index = models.IntegerField(primary_key=True)
+    index = models.IntegerField()
     ts_code = models.CharField(max_length=9)
-    symbol = models.CharField(max_length=6)
+    symbol = models.CharField(primary_key=True,max_length=6)
     name = models.CharField(max_length=45)
     area = models.CharField(max_length=45)
     industry = models.CharField(max_length=45)
@@ -46,8 +46,8 @@ class Choice(models.Model):
 |     0| 20201126 |000002.SZ | 30.78 | 31.07 | 30.12 | 30.94 | 30.8    |0.14000000000000057 |  0.4545 | 584039.77 | 1788275.571 |        0.6012 |         NULL | 19.574 | 60601.912 | 19.529    | 53780.287 | 19.4825 | 50590.3995 | 21.2065 | 75992.6447 | 22.1088 | 110739.7629 |
 '''
 class Stock(models.Model):
-    index = models.IntegerField(primary_key=True)
-    trade_date = models.DateTimeField()
+    index = models.IntegerField()
+    trade_date = models.CharField(primary_key=True)
     ts_code = models.CharField(max_length=9)
     open = models.FloatField()
     high = models.FloatField()
@@ -60,17 +60,6 @@ class Stock(models.Model):
     amount = models.FloatField()
     turnover_rate = models.FloatField()
     volume_ratio = models.FloatField()
-    ma5 = models.FloatField()
-    ma_v_5 = models.FloatField()
-    ma10 = models.FloatField()
-    ma_v_10 = models.FloatField()
-    ma20 = models.FloatField()
-    ma_v_20 = models.FloatField()
-    ma72 = models.FloatField()
-    ma_v_72 = models.FloatField()
-    ma120 = models.FloatField()
-    ma_v_120 = models.FloatField()
 
     class Meta:
-        db_table = 'stock_template'
         ordering = ['trade_date']
