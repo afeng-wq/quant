@@ -91,7 +91,7 @@ class TushareUtil(object):
                           contract_type='', retry_count=3)
         return data
 
-    def get_save_stock_info(self, ts_code, start_date, end_date, action, limit=None):
+    def get_save_stock_info(self, ts_code, start_date, end_date, action, limit=1):
         """
         ts_code:代码，通过get_stock_list获取的ts_code
         start_date:开始日期，格式YYYYMMDD，例子20201101
